@@ -7,7 +7,7 @@ class Grid
   attr_reader :cells
 
   def initialize
-    cell_factory
+    @cells = cell_factory
     associate_all_neighbours
   end
 
@@ -22,7 +22,7 @@ class Grid
   end
 
   def cell_factory
-    @cells = Array.new(SIZE) { Cell.new } 
+    Array.new(SIZE) { Cell.new } 
   end
 
   def neighbours(index)
@@ -30,15 +30,27 @@ class Grid
   end
 
   def row_neighbours(index)
-    ((index - index % 9)...9).to_a
+    (0...9).map{ |i| i + row(index) * 9 }
   end
 
   def col_neighbours(index)
-    []
+    (0...9).map{ |i| col(index) + (i * 9) }
   end
 
   def box_neighbours(index)
    []
+  end
+
+  def row(index)
+    (index / 9)
+  end
+
+  def col(index)
+    (index % 9)
+  end
+
+  def box(index)
+    1
   end
 
   def cell_values

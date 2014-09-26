@@ -11,7 +11,8 @@ describe Grid do
     end
 
     it 'should associate cell with neighbour indices' do
-      expect(grid.cells[2].neighbours).to eq [1,2,9,10,11,18,19,20]
+      expect(grid.cells[10].neighbours).to eq [0, 1, 2, 9, 11, 12, 13, 14, 
+          15, 16, 17, 18, 19, 20, 28, 37, 46, 55, 64, 73]
     end
 
   end
