@@ -18,10 +18,6 @@ class Cell
     @value = candidates.first if lone_candidate?
   end
 
-  def update_candidates
-    @candidates -= neighbours.map(&:value)
-  end
-
   private
 
   def lone_candidate?

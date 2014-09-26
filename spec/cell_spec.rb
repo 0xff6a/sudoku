@@ -34,16 +34,4 @@ describe Cell do
 
   end
 
-  context 'updating candidates' do
-
-    it 'can update candidate values based on its neighbours' do
-      cell_2 = Cell.new(8)
-      cell_3 = Cell.new(9)
-      cell.neighbours = [cell_2, cell_3]
-      cell.update_candidates
-      expect(cell.candidates).to eq (1..7).to_a
-    end
-
-  end
-
 end
