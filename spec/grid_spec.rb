@@ -17,7 +17,7 @@ describe Grid do
 
   end
 
-  context 'updating cells' do
+  context 'managing cells' do
 
     it 'can update cells with candidates based on neighbour values' do
       grid.cells[1].value = 9
@@ -31,6 +31,16 @@ describe Grid do
       _fill_neighbour_cells(8)
       grid.try_solve_all_cells
       expect(grid.cells[8]).to be_solved
+    end
+
+  end
+
+  context 'cell content' do
+
+    it 'can fill cells from puzzle string' do
+      string = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
+      grid.fill_with(string)
+      expect(grid.cells.map(&:value).join('').to_s).to eq string
     end
 
   end

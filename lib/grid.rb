@@ -21,6 +21,10 @@ class Grid
     cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
   end
 
+  def fill_with(puzzle_string)
+    cells.each_with_index{ |cell, index| cell.value = puzzle_string[index].to_i }
+  end
+
   private
 
   def cell_factory
