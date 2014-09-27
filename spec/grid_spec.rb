@@ -37,10 +37,14 @@ describe Grid do
 
   context 'cell content' do
 
+    it 'can return contents as a string' do
+      expect(grid.to_s).to eq '0' * 81
+    end
+
     it 'can fill cells from puzzle string' do
       string = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
       grid.fill_with(string)
-      expect(grid.cells.map(&:value).join('').to_s).to eq string
+      expect(grid.to_s).to eq string
     end
 
   end

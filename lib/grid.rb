@@ -25,6 +25,10 @@ class Grid
     cells.each_with_index{ |cell, index| cell.value = puzzle_string[index].to_i }
   end
 
+  def to_s
+    cells.map(&:value).join('').to_s
+  end
+
   private
 
   def cell_factory
