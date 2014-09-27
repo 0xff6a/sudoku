@@ -20,12 +20,15 @@ describe Grid do
   context 'updating cells' do
 
     it 'can update cells with candidates based on neighbour values' do
-      # grid.display_boxes
       grid.cells[1].value = 9
       grid.cells[2].value = 8
       grid.cells[80].value = 7
-      grid.update_cells
+      grid.update_all_candidates
       expect(grid.cells[0].candidates).to eq (1..7).to_a
+    end
+
+    it 'can try to solve all cells' do
+
     end
 
   end
