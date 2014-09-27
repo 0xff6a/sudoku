@@ -57,11 +57,6 @@ describe Grid do
       expect(grid.to_s).to eq string
     end
 
-    it 'can guess a value for a cell' do
-      grid.guess!(0, 3)
-      expect(grid.cells[0].value).to eq 3
-    end
-
   end
 
   def _fill_neighbour_cells(index)

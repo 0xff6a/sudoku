@@ -20,10 +20,6 @@ class Grid
     cells.each(&:solve!)
   end
 
-  def guess!(index, value)
-    @cells[index].value = value 
-  end
-
   def unsolved_count
     cells.reject(&:solved?).count
   end
