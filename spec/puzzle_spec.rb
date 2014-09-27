@@ -48,6 +48,7 @@ describe Puzzle do
       hard_puzzle.solve!
       expect(hard_puzzle).to be_solved
     end
+    
   end
   
 end

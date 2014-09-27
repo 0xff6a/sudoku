@@ -20,11 +20,11 @@ class Puzzle
   end
 
   def try_harder
-    target_cell = first_unsolved_cell
-    target_cell.candidates.each do |candidate|
+    cell = first_unsolved_cell
+    cell.candidates.each do |candidate|
       
       simulation = replicate_puzzle
-      simulation.grid.guess!(grid.index(target_cell), candidate)
+      simulation.grid.guess!(index(cell), candidate)
       simulation.solve!
 
       steal_solution_from(simulation) and return if simulation.solved?
@@ -44,6 +44,10 @@ class Puzzle
   end
 
   private
+
+  def index(cell)
+    grid.index(cell)
+  end
 
   def grid_factory
     @grid = Grid.new
