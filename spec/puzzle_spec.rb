@@ -53,7 +53,6 @@ describe Puzzle do
       blank = Puzzle.new('0' * 81)
       blank.solve!
       expect(blank).to be_solved
-      puts blank.display
     end
     
   end

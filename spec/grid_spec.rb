@@ -25,20 +25,22 @@ describe Grid do
 
   context 'managing cells' do
 
+    let(:index) { 8 }
+
     it 'can try to solve all cells' do
-      _fill_neighbour_cells(8)
+      _fill_neighbour_cells(index)
       grid.try_solve_all_cells
-      expect(grid.cells[8]).to be_solved
+      expect(grid.cells[index]).to be_solved
     end
 
     it 'can count how many cells are  unsolved' do
-      _fill_neighbour_cells(8)
+      _fill_neighbour_cells(index)
       grid.try_solve_all_cells
       expect(grid.unsolved_count).to eq 72
     end
 
     it 'knows the index of a cell' do
-      expect(grid.index(grid.cells[3])).to eq 3
+      expect(grid.index(grid.cells[index])).to eq index
     end
 
   end
