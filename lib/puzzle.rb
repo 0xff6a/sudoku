@@ -7,6 +7,20 @@ class Puzzle
     grid_factory
   end
 
+  def solved?
+    grid.cells.all?(&:solved?)
+  end
+
+  def solve!
+    previously_unsolved, looping = Grid::SIZE, false
+    until solved? || looping
+      grid.try_solve_all_cells
+      unsolved = grid.unsolved_count
+      looping = (previously_unsolved == unsolved)
+      previously_unsolved = unsolved
+    end
+  end
+
   private
 
   def grid_factory

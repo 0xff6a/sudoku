@@ -13,8 +13,14 @@ class Grid
   end
 
   def try_solve_all_cells
-    update_all_candidates
-    cells.map(&:solve!)
+    cells.each do |cell| 
+      cell.solve!
+      update_all_candidates
+    end
+  end
+
+  def unsolved_count
+    cells.reject(&:solved?).count
   end
 
   def update_all_candidates
@@ -60,7 +66,7 @@ class Grid
   end
 
   def nth_box_shift(index)
-    (box_base * box_col(index)) + (box_base * box_row(index))
+    (box_base * box_col(index)) + (base * box_base * box_row(index))
   end
 
   def row(index)

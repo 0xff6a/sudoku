@@ -13,6 +13,8 @@ describe Grid do
     it 'should associate cell with neighbour indices' do
       expect(grid.cells[10].neighbours.sort).to eq [0, 1, 2, 9, 11, 12, 13, 14, 
           15, 16, 17, 18, 19, 20, 28, 37, 46, 55, 64, 73]
+      expect(grid.cells[80].neighbours.sort).to eq [8, 17, 26, 35, 44, 53, 60, 61, 62, 69, 70,
+        71, 72, 73, 74, 75, 76, 77, 78, 79]
     end
 
   end
@@ -31,6 +33,12 @@ describe Grid do
       _fill_neighbour_cells(8)
       grid.try_solve_all_cells
       expect(grid.cells[8]).to be_solved
+    end
+
+    it 'can count how many cells are  unsolved' do
+      _fill_neighbour_cells(8)
+      grid.try_solve_all_cells
+      expect(grid.unsolved_count).to eq 72
     end
 
   end

@@ -15,12 +15,13 @@ class Cell
   end
 
   def solve!
-    @value = candidates.first if lone_candidate?
+    return if solved?
+    @value = candidates.first if solvable?
   end
 
   private
 
-  def lone_candidate?
+  def solvable?
     candidates.count == 1
   end
 

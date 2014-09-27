@@ -20,5 +20,24 @@ describe Puzzle do
     end
 
   end
+
+  context 'solving the puzzle' do
+
+    it 'should not be solved initially' do
+      expect(puzzle).not_to be_solved
+    end
+
+    it 'can solve the puzzle' do
+      puzzle.solve!
+      expect(puzzle).to be_solved
+    end
+
+    it 'can return a solution string' do
+      puzzle.solve!
+      expect(puzzle.solution).to eq '615493872348127956279568431496832517521746389783915264952681743864379125137254698'
+
+    end
+
+  end
   
 end
