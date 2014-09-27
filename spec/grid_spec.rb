@@ -36,7 +36,7 @@ describe Grid do
   end
 
   def _fill_neighbour_cells(index)
-    grid.neighbours(index).each_with_index{|ref, index| grid.cells[ref].value = index + 2}
+    grid.cells[index].neighbours.each_with_index{|ref, index| grid.cells[ref].value = index + 2}
   end
 
 end

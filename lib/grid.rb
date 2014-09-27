@@ -12,17 +12,13 @@ class Grid
     associate_all_neighbours
   end
 
-  def update_all_candidates
-    cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
-  end
-
   def try_solve_all_cells
     update_all_candidates
     cells.map(&:solve!)
   end
 
-  def neighbours(index)
-    (row_neighbours(index) + col_neighbours(index) + box_neighbours(index)).uniq - [index]
+  def update_all_candidates
+    cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
   end
 
   private
@@ -33,6 +29,10 @@ class Grid
 
   def neighbour_values(cell)
     cell.neighbours.map{ |index| cells[index].value }
+  end
+
+  def neighbours(index)
+    (row_neighbours(index) + col_neighbours(index) + box_neighbours(index)).uniq - [index]
   end
 
   def associate_all_neighbours
