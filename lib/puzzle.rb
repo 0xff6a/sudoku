@@ -24,7 +24,7 @@ class Puzzle
     target_cell.candidates.each do |candidate|
       
       simulation = replicate_puzzle
-      # simulation.grid.guess!(target_cell, candidate)
+      simulation.grid.guess!(grid.index(target_cell), candidate)
       simulation.solve!
 
       steal_solution_from(simulation) and return if simulation.solved?

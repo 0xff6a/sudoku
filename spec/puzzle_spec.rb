@@ -39,7 +39,7 @@ describe Puzzle do
 
   end
 
-  xcontext 'solving a hard puzzle' do
+  context 'solving a hard puzzle' do
 
     let(:hard)        {'800000000003600000070090200050007000000045700000100030001000068008500010090000400'}
     let(:hard_puzzle) { Puzzle.new(hard) }
