@@ -50,8 +50,9 @@ class Grid
   end
 
   def box_neighbours(index)
-    []
-    # (0...base).map{ |i| box(index) }
+    (0...3).map{ |i| i + (3 * box_col(index)) + (3 * box_row(index)) } + 
+      (9...12).map{ |i| i + (3 * box_col(index)) + (3 * box_row(index)) } +
+        (18...21).map{ |i| i + (3 * box_col(index)) + (3 * box_row(index)) } 
   end
 
   def row(index)

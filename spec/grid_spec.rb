@@ -11,7 +11,7 @@ describe Grid do
     end
 
     it 'should associate cell with neighbour indices' do
-      expect(grid.cells[10].neighbours).to eq [0, 1, 2, 9, 11, 12, 13, 14, 
+      expect(grid.cells[10].neighbours.sort).to eq [0, 1, 2, 9, 11, 12, 13, 14, 
           15, 16, 17, 18, 19, 20, 28, 37, 46, 55, 64, 73]
     end
 
@@ -20,7 +20,7 @@ describe Grid do
   context 'updating cells' do
 
     it 'can update cells with candidates based on neighbour values' do
-      grid.display_boxes
+      # grid.display_boxes
       grid.cells[1].value = 9
       grid.cells[2].value = 8
       grid.cells[80].value = 7
