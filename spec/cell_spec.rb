@@ -27,9 +27,14 @@ describe Cell do
     end
 
     it 'can be solved' do
-      cell.candidates = [8]
+      cell.neighbours = (2..9).map{|val| Cell.new(val) }
       cell.solve!
       expect(cell).to be_solved
+    end
+
+    it 'updates candidates before solving' do
+      expect(cell).to receive(:update_candidates)
+      cell.solve!
     end
 
   end

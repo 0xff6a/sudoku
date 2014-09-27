@@ -20,6 +20,7 @@ class Cell
 
   def solve!
     return if solved?
+    update_candidates
     @value = candidates.first if solvable?
   end
 
@@ -27,6 +28,10 @@ class Cell
 
   def solvable?
     candidates.count == 1
+  end
+
+  def update_candidates
+    @candidates -= neighbours.map(&:value).uniq
   end
 
 end
