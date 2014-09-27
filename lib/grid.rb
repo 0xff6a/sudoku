@@ -17,14 +17,7 @@ class Grid
   end
 
   def try_solve_all_cells
-    cells.each do |cell| 
-      update_local_candidates(cell)
-      cell.solve!
-    end
-  end
-
-  def guess!(index, value)
-    @cells[index].value = value 
+    cells.each(&:solve!)
   end
 
   def unsolved_count
@@ -45,28 +38,16 @@ class Grid
     Array.new(SIZE) { Cell.new } 
   end
 
-  def update_all_candidates
-    cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
+  def associate_all_neighbours
+    cells.each_with_index { |cell, index| cell.neighbours += neighbour_cells(index) }
   end
 
-  def update_local_candidates(cell)
-    neighbour_cells(cell).each{ |cell| cell.candidates -= neighbour_values(cell) }
-  end
-
-  def neighbour_cells(cell)
-    cell.neighbours.map{ |index| cells[index] }
-  end
-
-  def neighbour_values(cell)
-    cell.neighbours.map{ |index| cells[index].value }
+  def neighbour_cells(index)
+    neighbours(index).map{ |i| cells[i] }
   end
 
   def neighbours(index)
     (row_neighbours(index) + col_neighbours(index) + box_neighbours(index)).uniq - [index]
-  end
-
-  def associate_all_neighbours
-    cells.each_with_index { |cell, index| cell.neighbours += neighbours(index) }
   end
 
   def row_neighbours(index)
