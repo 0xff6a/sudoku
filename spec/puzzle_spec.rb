@@ -47,7 +47,6 @@ describe Puzzle do
     it 'can solve the hard puzzle' do
       hard_puzzle.solve!
       expect(hard_puzzle).to be_solved
-      puts hard_puzzle.display
     end
 
     it 'can solve an empty sudoku' do
