@@ -25,6 +25,10 @@ class Puzzle
     grid.to_s if solved?
   end
 
+  def display
+    rows = grid.cells.map(&:value).each_slice(9) {|row| puts row.inspect + "\n" }
+  end
+
   private
 
   def grid_factory
