@@ -14,6 +14,13 @@ class Grid
 
   def update_cells
     cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
+    cells.map(&:solve!)
+  end
+
+  def display_boxes
+    puts 'HELLO'
+    # puts (0...81).map{ |i| "row: #{row(i)} column: #{col(i)} box: #{box(i)}" }
+    puts (0...81).map{ |i| box(i) }.inspect
   end
 
   private
@@ -44,26 +51,43 @@ class Grid
 
   def box_neighbours(index)
     []
+    # (0...base).map{ |i| box(index) }
   end
 
   def row(index)
     (index / base)
   end
 
-  # def adj_row(index)
-  #   middle_of_box?(index) ? row(index) + 1 : row(index)
-  # end
-
   def col(index)
     (index % base)
   end
 
+  # def adj_row(index)
+  #   middle_of_box?(index) ? row(index) + 1 : row(index) + 0
+  # end
+
+  def box(index)
+    (3 * box_row(index)) + box_col(index)
+  end
+
+  def box_row(index)
+    row(index) / 3
+  end
+
+  def box_col(index)
+    col(index) / 3
+  end
+
+  # def adj_col(index)
+  #   col(index)
+  # end
+
   # def box(index)
-  #   box = ( ( adj_row(index) * col(index) ) / base ) + 1
+  #   box = ( ( adj_row(index) * adj_col(index) ) / base ) + 1
   # end
 
   # def middle_of_box?(index)
-  #   row(index) % 3 == 2 && col(index) % 3 == 2
+  #   row(index) % 3 == 1 && col(index) % 3 == 1
   # end
 
   def base

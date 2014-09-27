@@ -20,6 +20,7 @@ describe Grid do
   context 'updating cells' do
 
     it 'can update cells with candidates based on neighbour values' do
+      grid.display_boxes
       grid.cells[1].value = 9
       grid.cells[2].value = 8
       grid.cells[80].value = 7
