@@ -21,14 +21,6 @@ describe Grid do
 
   context 'managing cells' do
 
-    it 'can update cells with candidates based on neighbour values' do
-      grid.cells[1].value = 9
-      grid.cells[2].value = 8
-      grid.cells[80].value = 7
-      grid.update_all_candidates
-      expect(grid.cells[0].candidates).to eq (1..7).to_a
-    end
-
     it 'can try to solve all cells' do
       _fill_neighbour_cells(8)
       grid.try_solve_all_cells
@@ -39,6 +31,10 @@ describe Grid do
       _fill_neighbour_cells(8)
       grid.try_solve_all_cells
       expect(grid.unsolved_count).to eq 72
+    end
+
+    it 'knows the index of a cell' do
+      expect(grid.index(grid.cells[3])).to eq 3
     end
 
   end
@@ -53,6 +49,11 @@ describe Grid do
       string = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
       grid.fill_with(string)
       expect(grid.to_s).to eq string
+    end
+
+    it 'can guess a value for a cell' do
+      grid.guess!(0, 3)
+      expect(grid.cells[0].value).to eq 3
     end
 
   end

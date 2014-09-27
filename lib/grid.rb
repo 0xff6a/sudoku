@@ -12,17 +12,21 @@ class Grid
     associate_all_neighbours
   end
 
+  def index(cell)
+    cells.index(cell)
+  end
+
   def try_solve_all_cells
     update_all_candidates
     cells.each(&:solve!)
   end
 
-  def unsolved_count
-    cells.reject(&:solved?).count
+  def guess!(index, value)
+    @cells[index].value = value 
   end
 
-  def update_all_candidates
-    cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
+  def unsolved_count
+    cells.reject(&:solved?).count
   end
 
   def fill_with(puzzle_string)
@@ -37,6 +41,10 @@ class Grid
 
   def cell_factory
     Array.new(SIZE) { Cell.new } 
+  end
+
+  def update_all_candidates
+    cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
   end
 
   def neighbour_values(cell)

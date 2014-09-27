@@ -14,6 +14,10 @@ class Cell
     VALUE_RANGE.include?(value)
   end
 
+  def unsolved?
+    !solved?
+  end
+
   def solve!
     return if solved?
     @value = candidates.first if solvable?

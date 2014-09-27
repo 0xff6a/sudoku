@@ -38,5 +38,16 @@ describe Puzzle do
     end
 
   end
+
+  xcontext 'solving a hard puzzle' do
+
+    let(:hard)        {'800000000003600000070090200050007000000045700000100030001000068008500010090000400'}
+    let(:hard_puzzle) { Puzzle.new(hard) }
+
+    it 'can solve the hard puzzle' do
+      hard_puzzle.solve!
+      expect(hard_puzzle).to be_solved
+    end
+  end
   
 end
