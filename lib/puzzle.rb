@@ -21,6 +21,10 @@ class Puzzle
     end
   end
 
+  def solution
+    grid.to_s if solved?
+  end
+
   private
 
   def grid_factory
