@@ -21,7 +21,7 @@ class Cell
   def solve!
     return if solved?
     update_candidates
-    @value = candidates.first if solvable?
+    set_value if solvable?
   end
 
   private
@@ -32,6 +32,10 @@ class Cell
 
   def update_candidates
     @candidates -= neighbours.map(&:value).uniq
+  end
+
+  def set_value
+    @value = candidates.first
   end
 
 end
