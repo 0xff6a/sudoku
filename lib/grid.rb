@@ -50,9 +50,11 @@ class Grid
   end
 
   def box_neighbours(index)
-    (0...3).map{ |i| i + (3 * box_col(index)) + (3 * box_row(index)) } + 
-      (9...12).map{ |i| i + (3 * box_col(index)) + (3 * box_row(index)) } +
-        (18...21).map{ |i| i + (3 * box_col(index)) + (3 * box_row(index)) } 
+    first_box.map{ |i| i + nth_box_shift(index) }  
+  end
+
+  def nth_box_shift(index)
+    (3 * box_col(index)) + (3 * box_row(index))
   end
 
   def row(index)
@@ -81,6 +83,10 @@ class Grid
 
   def box_base
     Math.sqrt(WIDTH).to_i
+  end
+
+  def first_box
+    (0...3).to_a + (9...12).to_a + (18...21).to_a
   end
 
 end
