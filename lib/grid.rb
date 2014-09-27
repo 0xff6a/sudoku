@@ -13,10 +13,8 @@ class Grid
   end
 
   def try_solve_all_cells
-    cells.each do |cell| 
-      cell.solve!
-      update_all_candidates
-    end
+    update_all_candidates
+    cells.each(&:solve!)
   end
 
   def unsolved_count
