@@ -23,8 +23,7 @@ class Puzzle
     cell = first_unsolved_cell
     cell.candidates.each do |candidate|
       
-      simulation = replicate_puzzle
-      simulation.grid.guess!(index(cell), candidate)
+      simulation = simulate_puzzle_with(index(cell), candidate)
       simulation.solve!
 
       steal_solution_from(simulation) and return if simulation.solved?
@@ -58,8 +57,10 @@ class Puzzle
     grid.cells.find(&:unsolved?)
   end
 
-  def replicate_puzzle
-    Puzzle.new(grid.to_s)
+  def simulate_puzzle_with(index, candidate)
+    input = grid.to_s
+    input[index] = candidate.to_s
+    Puzzle.new(input)
   end
 
   def steal_solution_from(simulation)

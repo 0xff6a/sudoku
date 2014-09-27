@@ -17,8 +17,10 @@ class Grid
   end
 
   def try_solve_all_cells
-    update_all_candidates
-    cells.each(&:solve!)
+    cells.each do |cell| 
+      update_local_candidates(cell)
+      cell.solve!
+    end
   end
 
   def guess!(index, value)
@@ -45,6 +47,14 @@ class Grid
 
   def update_all_candidates
     cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
+  end
+
+  def update_local_candidates(cell)
+    neighbour_cells(cell).each{ |cell| cell.candidates -= neighbour_values(cell) }
+  end
+
+  def neighbour_cells(cell)
+    cell.neighbours.map{ |index| cells[index] }
   end
 
   def neighbour_values(cell)
