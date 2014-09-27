@@ -17,7 +17,12 @@ class Grid
   end
 
   def try_solve_all_cells
+    update_all_candidates
     cells.map(&:solve!)
+  end
+
+  def neighbours(index)
+    (row_neighbours(index) + col_neighbours(index) + box_neighbours(index)).uniq - [index]
   end
 
   private
@@ -32,10 +37,6 @@ class Grid
 
   def associate_all_neighbours
     cells.each_with_index { |cell, index| cell.neighbours += neighbours(index) }
-  end
-
-  def neighbours(index)
-    (row_neighbours(index) + col_neighbours(index) + box_neighbours(index)).uniq - [index]
   end
 
   def row_neighbours(index)

@@ -28,9 +28,15 @@ describe Grid do
     end
 
     it 'can try to solve all cells' do
-
+      _fill_neighbour_cells(8)
+      grid.try_solve_all_cells
+      expect(grid.cells[8]).to be_solved
     end
 
+  end
+
+  def _fill_neighbour_cells(index)
+    grid.neighbours(index).each_with_index{|ref, index| grid.cells[ref].value = index + 2}
   end
 
 end
