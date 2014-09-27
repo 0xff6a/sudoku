@@ -10,12 +10,18 @@ describe Grid do
       expect(grid.cells.count).to eq 81
     end
 
-    it 'should associate cell with neighbour indices' do
-      expect(grid.cells[10].neighbours.sort).to eq [0, 1, 2, 9, 11, 12, 13, 14, 
+    it 'should populate cell with neighbours' do
+      expect(grid.cells[1].neighbours[0]).to eq grid.cells[0]
+    end
+
+    xit 'should know neighbour indices of a cell' do
+      expect(grid.neighbours(10)).to eq [0, 1, 2, 9, 11, 12, 13, 14, 
           15, 16, 17, 18, 19, 20, 28, 37, 46, 55, 64, 73]
-      expect(grid.cells[80].neighbours.sort).to eq [8, 17, 26, 35, 44, 53, 60, 61, 62, 69, 70,
+      expect(grid.neighbours(80)).to eq [8, 17, 26, 35, 44, 53, 60, 61, 62, 69, 70,
         71, 72, 73, 74, 75, 76, 77, 78, 79]
     end
+
+
 
   end
 
@@ -59,7 +65,7 @@ describe Grid do
   end
 
   def _fill_neighbour_cells(index)
-    grid.cells[index].neighbours.each_with_index{|ref, index| grid.cells[ref].value = index + 2}
+    grid.cells[index].neighbours.each_with_index{ |cell, i| cell.value = i + 2}
   end
 
 end

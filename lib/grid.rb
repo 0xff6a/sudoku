@@ -17,7 +17,6 @@ class Grid
   end
 
   def try_solve_all_cells
-    update_all_candidates
     cells.each(&:solve!)
   end
 
@@ -43,20 +42,16 @@ class Grid
     Array.new(SIZE) { Cell.new } 
   end
 
-  def update_all_candidates
-    cells.each{ |cell| cell.candidates -= neighbour_values(cell) }
+  def associate_all_neighbours
+    cells.each_with_index { |cell, index| cell.neighbours += neighbour_cells(index) }
   end
 
-  def neighbour_values(cell)
-    cell.neighbours.map{ |index| cells[index].value }
+  def neighbour_cells(index)
+    neighbours(index).map{ |i| cells[i] }
   end
 
   def neighbours(index)
     (row_neighbours(index) + col_neighbours(index) + box_neighbours(index)).uniq - [index]
-  end
-
-  def associate_all_neighbours
-    cells.each_with_index { |cell, index| cell.neighbours += neighbours(index) }
   end
 
   def row_neighbours(index)

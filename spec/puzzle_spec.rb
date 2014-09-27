@@ -48,6 +48,13 @@ describe Puzzle do
       hard_puzzle.solve!
       expect(hard_puzzle).to be_solved
     end
+
+    it 'can solve an empty sudoku' do
+      blank = Puzzle.new('0' * 81)
+      blank.solve!
+      expect(blank).to be_solved
+      puts blank.display
+    end
     
   end
   
