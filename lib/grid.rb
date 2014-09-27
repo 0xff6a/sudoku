@@ -62,36 +62,24 @@ class Grid
     (index % base)
   end
 
-  # def adj_row(index)
-  #   middle_of_box?(index) ? row(index) + 1 : row(index) + 0
-  # end
-
   def box(index)
-    (3 * box_row(index)) + box_col(index)
+    (box_base * box_row(index)) + box_col(index)
   end
 
   def box_row(index)
-    row(index) / 3
+    row(index) / box_base
   end
 
   def box_col(index)
-    col(index) / 3
+    col(index) / box_base
   end
-
-  # def adj_col(index)
-  #   col(index)
-  # end
-
-  # def box(index)
-  #   box = ( ( adj_row(index) * adj_col(index) ) / base ) + 1
-  # end
-
-  # def middle_of_box?(index)
-  #   row(index) % 3 == 1 && col(index) % 3 == 1
-  # end
 
   def base
     WIDTH
+  end
+
+  def box_base
+    Math.sqrt(WIDTH).to_i
   end
 
 end
