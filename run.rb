@@ -8,6 +8,10 @@ def puzzle_string
   ARGV.first
 end
 
+def valid?(puzzle_string)
+  puzzle_string.length == 81
+end
+
 def puzzle_factory
   Puzzle.new(puzzle_string)
 end
@@ -20,6 +24,7 @@ def print_solution
 end
 
 def run
+  raise 'Invalid puzzle string' unless valid?(puzzle_string)
   puzzle_string ? print_solution : print_usage_msg
 end 
 
