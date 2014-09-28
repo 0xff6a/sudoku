@@ -43,7 +43,7 @@ class Grid
   end
 
   def neighbour_cells(index)
-    neighbours(index).map{ |i| cells[i] }
+    neighbours(index).map{ |neighbour_ref| cells[neighbour_ref] }
   end
 
   def neighbours(index)
@@ -51,15 +51,15 @@ class Grid
   end
 
   def row_neighbours(index)
-    (0...base).map{ |i| i + row(index) * base }
+    (0...base).map{ |col_idx| col_idx + row(index) * base }
   end
 
   def col_neighbours(index)
-    (0...base).map{ |i| col(index) + (i * base) }
+    (0...base).map{ |row_idx| col(index) + (row_idx * base) }
   end
 
   def box_neighbours(index)
-    first_box.map{ |i| i + nth_box_shift(index) }  
+    first_box.map{ |anchor_idx| anchor_idx + nth_box_shift(index) }  
   end
 
   def nth_box_shift(index)

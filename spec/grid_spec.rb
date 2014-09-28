@@ -60,7 +60,7 @@ describe Grid do
   end
 
   def _fill_neighbour_cells(index)
-    grid.cells[index].neighbours.each_with_index{ |cell, i| cell.value = i + 2}
+    grid.cells[index].neighbours.each_with_index{ |cell, idx| cell.value = idx + 2}
   end
 
 end
