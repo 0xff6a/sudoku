@@ -1,3 +1,5 @@
+require_relative 'grid'
+
 class Puzzle
 
   attr_reader   :puzzle_string, :grid
@@ -7,7 +9,7 @@ class Puzzle
     grid_factory
   end
 
-  def solve!
+  def solve!  
     previously_unsolved, looping = Grid::SIZE, false
     
     until solved? || looping
